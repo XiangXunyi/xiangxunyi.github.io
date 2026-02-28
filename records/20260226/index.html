@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>记录</title>
+	<title>记录 - 首个成功的 hack</title>
 	<style>
 		a {
 			text-decoration: none;
@@ -12,14 +12,6 @@
 
 		p {
 			margin-top: 30px;
-		}
-
-		td th {
-			text-align: center;
-		}
-
-		tr {
-			height: 40px;
 		}
 	</style>
 </head>
@@ -45,16 +37,26 @@
 				记录</a>
 		</header>
 		<main style="margin-top: 50px; width: 100%;">
-			<table style="width: 70%; background-color: #333; margin: 0 auto" border=1>
-				<tr>
-					<th style="width: 30%;">时间</th>
-					<th>标题</th>
-				</tr>
-				<tr>
-					<td style="width: 30%;">2026-02-26</td>
-					<td>首个成功的 hack</td>
-				</tr>
-			</table>
+			<div style="margin: 0 auto; width: 80%;">
+				<h1 style="margin: 0 auto; width: max-content;">
+					首个成功的 hack
+				</h1>
+				<p>
+					在 <a href="https://codeforces.com/contest/2203">Educational Codeforces Round 187</a> 中，
+					我看到了一份可爱的代码，它在求 n 个数的 lcm 时没有判断溢出
+				</p>
+				<p>
+					于是
+				</p>
+				<img style="margin: 0 auto; width: 80%;" src="/records/20260226/0.png" />
+				<p>
+					但是恶人有恶报，于是
+				</p>
+				<img style="margin: 0 auto; width: 80%;" src="/records/20260226/1.png" />
+				<p>
+					我在 C 题 fst，了，竟然是因为 <a href="https://codeforces.com/blog/entry/151601">1e18 + 1 == 1e18</a>
+				</p>
+			</div>
 		</main>
 	</div>
 </body>
