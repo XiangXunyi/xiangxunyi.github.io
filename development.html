@@ -27,22 +27,22 @@
 </head>
 
 <body style="background-color: #222; color: #FFF">
-	<div style="margin: 0 auto; max-width: 1000px;">
+	<div style="margin: 0 auto; max-width: 1200px;">
 		<header
 			style="height: 70px; border-bottom: 5px solid #444; border-left: 3px solid #444; border-right: 3px solid #444;">
-			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: 19%; border-right: 3px solid #444; color: #FFF;"
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
 				href="/">
 				首页</a>
-			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: 19%; border-right: 3px solid #444; color: #FFF;"
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
 				href="/aboutme.html">
 				关于我</a>
-			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: 19%; border-right: 3px solid #444; color: #FFF;"
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
 				href="/development.html">
 				开发</a>
-			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: 19%; border-right: 3px solid #444; color: #FFF;"
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
 				href="/webapplications.html">
 				Web 应用</a>
-			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: 19%; color: #FFF;"
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); color: #FFF;"
 				href="/records">
 				记录</a>
 		</header>
@@ -50,14 +50,14 @@
 			onclick="document.getElementById('note').style.display = 'none';">
 			点击开发名即可展开详细信息，点我关闭提示
 		</div>
-		<main style="margin-top: 50px; max-width: 1000px;">
-			<div style="width: 50%; margin: 0 auto;">
+		<main style="margin-top: 50px;">
+			<div style="margin: 0 auto;">
 				<div style="width: max-content; margin: 0 auto; font-size: x-large;"
 					onclick="display('elephantheaders')">
 					<strong>Elephant Headers</strong>
 				</div>
 				<div id="elephantheaders" onclick="" style="display: none;">
-					<p>这是一组基于 C++ 开发的头文件项目，可以帮助你快速开发基于 C++ 的应用程序。</p>
+					<p>这是一组基于 C++ 开发的头文件项目，它们实现了一些比较有用但是又不在标准库里的功能，希望它们能够简化你的一些开发。</p>
 					<p>目前里面包含的内容有：</p>
 					<ul>
 						<li>
@@ -66,8 +66,9 @@
 							</div>
 							<div id="elephantheaders-scannerandprinter"
 								style="display: none; margin-left: 20px; margin-top: 10px">
-								在你只有一个简易的读入函数（例如 recv）或输出函数（例如 send）的情况下，
-								可以使用 scanner 和 printer 类来提供更多样的方法（例如 scanf 和 printf）。
+								当你只有一个简易的读入函数，其能够实现读取固定长度的字符串（类似 fread、recv），
+								或者只有一个简易的输出函数，其能够实现输出一个给定的字符串（类似 fwrite、send），
+								scanner 和 printer 可以解析你的格式化输入输出和流式输入输出操作，并调用你给定的函数来完成这些操作
 								<br /><br />
 								<a href="https://github.com/XiangXunyi/Scanner-and-Printer-for-Cplusplus">打开</a>
 							</div>
