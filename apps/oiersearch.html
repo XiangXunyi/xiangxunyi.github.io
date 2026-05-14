@@ -452,7 +452,7 @@ export default (db) =&gt
 				{
 					try
 					{
-						await navigator.clipboard.writeText(document.getElementById("code").innerText);
+						await navigator.clipboard.writeText(document.getElementById("code").innerHTML.replace(/&gt;/g, ">"));
 						showError("代码已复制到剪贴板", "green");
 					}
 					catch (e)
