@@ -5,9 +5,11 @@
 	<title>OIer searcher</title>
 	<meta charset="UTF-8">
 	<style>
-		td {
+		td, th {
 			text-align: center;
-		}
+			height: 30px;
+			border-bottom: #444 solid 1px;
+		};
 	</style>
 	<script>
 		const contests =
@@ -215,18 +217,22 @@
 			</div>
 			<p>OIer searcher 可以帮助你通过 OIer 所参与的比赛名、成绩、所获奖项这些信息寻找最匹配的 OIer。</p>
 			<p>你可以在搜索框内输入比赛名，然后在下面的列表中选择比赛以添加到你的信息列表中，点击“生成”即可生成搜索代码，然后将其复制进 OIer DB 的自定义搜索框即可。</p>
-			<table id="contest-list" style="border: 1px solid #ccc;"></table>
-			<br />
-			<div style="font-size: small;">点击“不限”可以设置分数或奖项的限制。</div>
-			<br />
-			搜索比赛以添加到列表中：<input type="text" id="contest-input" onkeyup="searchContest()" placeholder="比赛名称" />
-			<ul id="search-result"></ul>
-			<br />
-			<button onclick="generate()">生成</button>
-			<button onclick="copyCode()">复制代码</button>
-			<button onclick="openOierDB()">打开OIerDB</button>
-			<br />
-			<pre id="code"></pre>
+			<div style="max-width: 600px; margin: 0 auto;">
+				<table id="contest-list" style="border: 2px solid #ccc; width: 100%; border-collapse: collapse;"></table>
+				<br />
+				<div style="font-size: small;">点击“不限”可以设置分数或奖项的限制。</div>
+				<br />
+				搜索比赛以添加到列表中：<input type="text" id="contest-input" onkeyup="searchContest()" placeholder="比赛名称" />
+				<ul id="search-result"></ul>
+				<br />
+				<button onclick="generate()" style="width: calc(50% - 2px); height: 40px; background-color: rgb(107, 201, 0);">生成</button>
+				<button onclick="copyCode()" style="width: calc(50% - 2px); height: 40px; background-color: rgb(233, 233, 96);">复制代码</button>
+				<br />
+				<button onclick="openOierDB()" style="width: 100%; height: 40px; margin-top: 5px; background-color: rgb(0, 165, 206);">打开OIerDB</button>
+				<br />
+				<br />
+				<textarea id="code" style="display: none; width: 100%; background-color: #222; color: #FFF; height: 400px;"></textarea>
+			</div>
 			<div id="error-list"></div>
 			<script>
 				function removeError()
@@ -265,16 +271,16 @@
 					let header = document.createElement("tr");
 					let nameHeader = document.createElement("th");
 					nameHeader.innerHTML = "比赛名称";
-					nameHeader.style.width = "120px";
+					nameHeader.style.width = "40%";
 					let scoreHeader = document.createElement("th");
 					scoreHeader.innerHTML = "得分";
-					scoreHeader.style.width = "50px";
+					scoreHeader.style.width = "20%";
 					let levelHeader = document.createElement("th");
 					levelHeader.innerHTML = "奖项";
-					levelHeader.style.width = "50px";
+					levelHeader.style.width = "20%";
 					let removeHeader = document.createElement("th");
 					removeHeader.innerHTML = "操作";
-					removeHeader.style.width = "50px";
+					removeHeader.style.width = "20%";
 					header.appendChild(nameHeader);
 					header.appendChild(scoreHeader);
 					header.appendChild(levelHeader);
@@ -330,6 +336,7 @@
 					let input = document.createElement("input");
 					input.type = "number";
 					input.value = lim[id].score;
+					input.style.width = "100%";
 					input.onblur = () => { inputScore_end(id, (Number)(input.value)); };
 					element.innerHTML = "";
 					element.appendChild(input);
@@ -379,6 +386,7 @@
 					element.appendChild(select);
 					select.onblur = () => { inputLevel_end(id, select.value); };
 					select.value = lim[id].level;
+					select.style.width = "100%";
 					select.focus();
 				}
 
@@ -415,7 +423,9 @@
 					for (let i = 0; i < lim.length; ++i)
 						if (lim[i].flag)
 							information.push({ id: i, score: lim[i].score, level: lim[i].level });
-					document.getElementById("code").innerHTML = `/** @param {OIerDb} db */
+					let element = document.getElementById("code");
+					element.style.display = "block";
+					element.innerHTML = `/** @param {OIerDb} db */
 export default (db) =&gt
 {
 	return db.oiers.filter((oier) =&gt
