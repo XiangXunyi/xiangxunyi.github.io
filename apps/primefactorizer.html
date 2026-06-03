@@ -4,7 +4,7 @@
 <head>
 	<title>Prime factorizer</title>
 	<meta charset="UTF-8">
-	<script>
+	<script id="worker" type="app/worker">
 		function pow(b, e, m)
 		{
 			let res = 1n;
@@ -78,16 +78,15 @@
 			return true;
 		}
 		function gcd(x, y) { return y == 0n ? x : gcd(y, x % y); }
-		function builtinfactorize(n)
+		function factorize(n)
 		{
 			if (n == 4n)
-				return [2n, 2n];
+				return 2n;
 			if (isPrime(n))
-				return [n];
+				return -1n;
 			while (true)
 			{
-				let c = bigrandom(n) + 1n;
-				++c;
+				let c = bigrandom(n - 1n) + 1n;
 				let single = c, double = (c * c + c) % n;
 				while (single != double)
 				{
@@ -96,19 +95,44 @@
 						if (g == n)
 							break;
 						else
-							return [...builtinfactorize(g), ...builtinfactorize(n / g)];
+							return g;
 					single = (single * single + c) % n;
 					double = (double * double + c) % n;
 					double = (double * double + c) % n;
 				}
 			}
 		}
-		async function factorize(n)
+		self.onmessage = e =>
 		{
-			if (n == 1n)
-				return [1n];
-			return builtinfactorize(n).sort((a, b) => (a < b ? -1 : 1));
-		}
+			let list = [{ number: e.data, state: false }];
+			let cnt = 1;
+			self.postMessage(list);
+			while (cnt != 0)
+			{
+				let pos = 0;
+				while (list[pos].state)
+					++pos;
+				let g = factorize(list[pos].number);
+				if (g == -1n)
+				{
+					list[pos].state = true;
+					--cnt;
+				}
+				else
+				{
+					list[pos].number /= g;
+					list.push({ number: g, state: false });
+					++cnt;
+				}
+				list.sort((a, b) => (a.number < b.number ? -1 : 1));
+				self.postMessage(list);
+			}
+			self.close();
+		};
+	</script>
+	<script>
+		const blob = new Blob([document.querySelector("#worker").textContent]);
+		const workerURL = URL.createObjectURL(blob);
 	</script>
 </head>
 
@@ -136,7 +160,7 @@
 			<div style="margin: 0 auto; width: max-content;">
 				<strong style="font-size: x-large;">Prime factorizer</strong>
 			</div>
-			<div style="max-width: 300px; margin: 0 auto; text-align: center;">
+			<div style="max-width: 600px; margin: 0 auto; text-align: center;">
 				<p>Prime factorizer 是一个质因数分解器。</p>
 				<br />
 				输入一个数字：
@@ -148,74 +172,78 @@
 				<button onclick="newtask()" style="width: calc(50% - 2px); height: 40px; background-color: rgb(107, 201, 0);">分解</button>
 				<br />
 				<br />
+				<p style="font-size: small;"><span style="color: red;">红色</span>表示这个数还在分解中</p>
 			</div>
 			<div id="factorizing-list"></div>
 			<div id="error-list"></div>
-			<script>
-				function removeError()
-				{
-					let list = document.getElementById("error-list");
-					list.removeChild(list.firstElementChild);
-				}
-
-				function showError(msg, color)
-				{
-					let list = document.getElementById("error-list");
-					let p = document.createElement("p");
-					p.innerHTML = msg;
-					p.style.color = color;
-					list.appendChild(p);
-					setTimeout(removeError, 3000);
-				}
-
-				let cnt = 0;
-				function newtask()
-				{
-					let n;
-					try
-					{
-						n = BigInt(document.getElementById("number-input").value);
-						if (n <= 0n)
-							throw(null);
-					}
-					catch (err)
-					{
-						showError("请输入正整数", "red");
-						return;
-					}
-					++cnt;
-					let list = document.getElementById("factorizing-list");
-					let p = document.createElement("p");
-					p.innerHTML = `${n}: 正在分解中`;
-					list.appendChild(p);
-					factorize(n).then((result) => 
-					{
-						let string = "", last = 0n, cnt = 0;
-						for (let i = 0; i < result.length; ++i)
-						{
-							let x = result[i];
-							if (x == last)
-								++cnt;
-							else
-							{
-								if (cnt == 1)
-									string += `${last} * `;
-								else if (cnt != 0)
-									string += `${last}<sup>${cnt}</sup> * `;
-								last = x;
-								cnt = 1;
-							}
-						}
-						if (cnt == 1)
-							string += `${last}`;
-						else
-							string += `${last}<sup>${cnt}</sup>`;
-						p.innerHTML = `${n} = ${string}`;
-					});
-				}
-			</script>
 		</main>
 	</div>
+	<script>
+		function removeError()
+		{
+			let list = document.getElementById("error-list");
+			list.removeChild(list.firstElementChild);
+		}
+
+		function showError(msg, color)
+		{
+			let list = document.getElementById("error-list");
+			let p = document.createElement("p");
+			p.innerHTML = msg;
+			p.style.color = color;
+			list.appendChild(p);
+			setTimeout(removeError, 3000);
+		}
+
+		function newtask()
+		{
+			let n;
+			try
+			{
+				n = BigInt(document.getElementById("number-input").value);
+				if (n <= 0n)
+					throw(null);
+			}
+			catch (err)
+			{
+				showError("请输入正整数", "red");
+				return;
+			}
+			let list = document.getElementById("factorizing-list");
+			let p = document.createElement("p");
+			list.appendChild(p);
+
+			let worker = new Worker(workerURL);
+			worker.onmessage = (e) =>
+			{
+				const result = e.data;
+				let string = "", last = 0n, laststate = false, cnt = 0;
+				for (let i = 0; i < result.length; ++i)
+				{
+					let x = result[i].number;
+					let state = result[i].state;
+					if (x == last)
+						++cnt;
+					else
+					{
+						if (cnt == 1)
+							string += (laststate ? `${last}` : `<span style="color: red">${last}</span>`) + ` * `;
+						else if (cnt != 0)
+							string += (laststate ? `${last}` : `<span style="color: red">${last}</span>`) + `<sup>${cnt}</sup> * `;
+						last = x;
+						laststate = state;
+						cnt = 1;
+					}
+				}
+				if (cnt == 1)
+					string += laststate ? `${last}` : `<span style="color: red">${last}</span>`;
+				else
+					string += laststate ? `${last}` : `<span style="color: red">${last}</span>`;
+				p.innerHTML = `${n} = ${string}`;
+			};
+			worker.postMessage(n);
+		}
+	</script>
 </body>
 
 </html>
