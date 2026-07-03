@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Prime factorizer</title>
+	<meta charset="UTF-8">
+	<style>
+		a {
+			text-decoration: none;
+			color: #999;
+		}
+	</style>
+</head>
+
+<body style="background-color: #222; color: #FFF">
+	<div style="margin: 0 auto; max-width: 1200px;">
+		<header
+			style="height: 70px; border-bottom: 5px solid #444; border-left: 3px solid #444; border-right: 3px solid #444;">
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
+				href="/">
+				首页</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
+				href="/aboutme.html">
+				关于我</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
+				href="/development.html">
+				开发</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); border-right: 3px solid #444; color: #FFF;"
+				href="/webapplications.html">
+				Web 应用</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; width: calc(20% - 6px); color: #FFF;"
+				href="/records">
+				记录</a>
+		</header>
+		<main style="margin-top: 50px; width: 100%;">
+			<div style="margin: 0 auto; width: max-content;">
+				<strong style="font-size: x-large;">Prime factorizer</strong>
+			</div>
+			<div style="max-width: 600px; margin: 0 auto; text-align: center;">
+				<p>Prime factorizer 是一个质因数分解器。</p>
+				<br />
+				输入一个数字：
+				<br />
+				<br />
+				<input type="number" id="number-input" placeholder="数字" style="width: 100%; font-size: large;" />
+				<br />
+				<br />
+				<button onclick="newtask()" style="width: calc(50% - 2px); height: 40px; background-color: rgb(107, 201, 0);">分解</button>
+				<br />
+				<br />
+				<p style="font-size: small;"><span style="color: red;">红色</span>表示这个数还在分解中</p>
+			</div>
+			<div id="factorizing-list"></div>
+			<div id="error-list"></div>
+		</main>
+	</div>
+	<script src="/apps/primefactorizer/main.js">
+	</script>
+</body>
+
+</html>
