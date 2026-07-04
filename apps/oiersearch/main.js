@@ -49,17 +49,6 @@ function showError(msg, color)
 	setTimeout(removeError, 3000);
 }
 
-let contest = [];
-fetch("/apps/oiersearch/data.json")
-	.then(response => 
-	{
-		if (!response.ok)
-			throw new Error(`网络请求失败，HTTP 响应代码为 ${response.status}`);
-		return response.json();
-	})
-	.then(data => { contest = data; })
-	.catch(error => { showError(error.message, "red"); });
-
 class limit
 {
 	constructor()
@@ -70,8 +59,22 @@ class limit
 	}
 }
 let lim = [];
-for (let i = 0; i < contests.length; ++i)
-	lim.push(new limit());
+let contests = [];
+fetch("/apps/oiersearch/data.json")
+	.then(response => 
+	{
+		if (!response.ok)
+			throw new Error(`网络请求失败，HTTP 响应代码为 ${response.status}`);
+		return response.json();
+	})
+	.then(data => { contests = data; })
+	.then(() =>
+	{
+		for (let i = 0; i < contests.length; ++i)
+			lim.push(new limit());
+	})
+	.catch(error => { showError(error.message, "red"); });
+
 
 function updateContestList()
 {
