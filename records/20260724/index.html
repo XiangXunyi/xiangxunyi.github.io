@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>记录 - NOI 2026 游记</title>
+	<style>
+		a {
+			text-decoration: none;
+			color: #999;
+		}
+
+		p {
+			margin-top: 30px;
+		}
+
+		code {
+			padding-left: 5px;
+			padding-right: 5px;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			background-color: #444;
+			border-radius: 5px;
+			margin: auto 5px;
+		}
+
+		.foldingFrame {
+			width: calc(100% - 25px);
+			padding-left: 20px;
+			border-left: #CCF solid 5px;
+		}
+	</style>
+	<script>
+		function display(id)
+		{
+			let ele = document.getElementById(id);
+			if (ele.style.display == 'none')
+				ele.style.display = 'block';
+			else
+				ele.style.display = 'none';
+		}
+	</script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+	        delimiters: [
+	            {left: '$$', right: '$$', display: true},
+	            {left: '$', right: '$', display: false},
+	            {left: '\\(', right: '\\)', display: false},
+	            {left: '\\[', right: '\\]', display: true}
+	        ],
+	        throwOnError: false
+	    });"></script>
+</head>
+
+<body style="background-color: #222; color: #FFF">
+	<div style="margin: 0 auto; max-width: 1200px;">
+		<header
+			style="display: flex; height: 70px; border-bottom: 5px solid #444; border-left: 3px solid #444; border-right: 3px solid #444;">
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; flex-grow: 1; border-right: 3px solid #444; color: #FFF;"
+				href="/">
+				首页</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; flex-grow: 1; border-right: 3px solid #444; color: #FFF;"
+				href="/aboutme.html">
+				关于我</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; flex-grow: 1; border-right: 3px solid #444; color: #FFF;"
+				href="/development.html">
+				开发</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; flex-grow: 1; border-right: 3px solid #444; color: #FFF;"
+				href="/webapplications.html">
+				Web 应用</a>
+			<a style="display: inline-flex; align-items: center; justify-content: center; height: 100%; flex-grow: 1; color: #FFF;"
+				href="/records">
+				记录</a>
+		</header>
+		<main style="margin-top: 50px; width: 100%;">
+			<div style="margin: 0 auto; width: 80%;">
+				<h1 style="margin: 0 auto; width: max-content;">
+					NOI 2026 游记
+				</h1>
+				<p>曾经看过一些 dalao 的游记，我也有一天写上 NOI 游记了</p>
+				<p>要特别感谢 spdarkle 和 Grisses 学长，他们在集训的时候为我解答了很多不会的东西，有时也会和我聊天，愿他们高三顺利，高考加油</p>
+				<div class="foldingFrame">
+					<div style="width: 100%; padding-top: 10px; padding-bottom: 10px; color: #CCF"
+						onclick="display('foldingFrame1')">
+						<h2 style="margin: 0 0;">赛前集训部分</h2>
+					</div>
+					<div id="foldingFrame1">
+						<h2 id="day-11">day -11</h2>
+						<p><strong>到达青岛</strong><br>也是第二次来了，打车去酒店。这个机场这么高级？把网约车的上车点整得和公交车站一样。</p>
+						<h2 id="day-10">day -10</h2>
+						<p><strong>代码源 round 1</strong><br>$100 + 20 + 0$<br>首先进场先睡 1 小时，后面状态依旧也不好，不会 T2<br>吃完饭后和 ljh 在
+							qdez
+							乱逛，qdez
+							好大啊，教学楼密度也很低，不像 cqbz 那样给人很大的压抑感</p>
+						<h2 id="day-9">day -9</h2>
+						<p><strong>代码源 round 2</strong><br>$0 + 0 + 0$<br>不知道为什么，状态还是很不好，一直都很想睡觉，去外面逛了几圈也没有用。后面把 T1
+							补了<br>吃完晚饭后依旧乱逛，这里面还有一座小山？还有拓展基地？这个学校的环境真是太好了，完爆 cqbz</p>
+						<h2 id="day-8">day -8</h2>
+						<p><strong>休整</strong><br>补了下前面的题，下午表演 <del>《大海！我们来了！》</del>
+							（好吧，其实就是去海边逛了逛）<br>感觉代码源的题目难度都很高啊，或许只是我状态不好？<br>打了 UOJ NOI
+							笔试，获得了 99 分的好成绩，很有进步空间啊</p>
+						<h2 id="day-7">day -7</h2>
+						<p><strong>UOJ NOI round 1</strong><br>$100 + 0 + 0$<br>我 T2 实际上已经把所有结论推出来了，只是没有想到 $\left[l \le
+							n
+							\le r
+							\right]$ 可以转化为
+							$\left[l \le n \right] - \left[r &lt; n \right]$ 这个容斥导致我的 DP 变成了 $O(n^8)$，甚至和 $O(2^n)$
+							平起平坐，崩溃了
+						</p>
+						<h2 id="day-6">day -6</h2>
+						<p><strong>UOJ NOI round 2</strong><br>$0 + 0 + 0$<br>没有想到 T1 的 DP
+							定义会是如此简单，崩了，我发现最近我好容易把签子打崩啊<br>据说第二天巴威要来青岛，我们回酒店集训，话说巴威长什么样呢<br>晚上打了 ARC--，直接 AK，突破 personal
+							best
+							rating</p>
+						<h2 id="day-5">day -5</h2>
+						<p><strong>代码源 round 3</strong><br>$0 + 0 + 0$<br>在酒店集训，我今天上午好像不那么困了欸，终于做出 T1 了，T1
+							怎么是数据结构啊，我的代码难产了<br>我不知道 spdarkle 和
+							paper 是怎么快打出这么屎的代码的，也许这就是差距吧<br>下午试图搞懂 T3，失败了<br>吃完晚饭后 adofai 开新曲《light years
+							away》，好听好看，简直是把
+							DLC
+							运用到了极致</p>
+						<h2 id="day-4">day -4</h2>
+						<p><strong>休整</strong><br>睡到 9 点才起床，直接爽飞。继续打昨天的
+							T1，花了一个上午才打完。只能说我对这类单调栈上维护各种东西的题还是太不熟悉了。结果调了一个下午也没过
+						</p>
+						<h2 id="day-3">day -3</h2>
+						<p><strong>代码源 round 4</strong><br>$100 + 69 + 0$<br>T1 很神秘啊，$O(n^4)$ 做法有 $99$ 分，最后 $1$ 分给到了
+							$O(n^3)$。结果第二天 $O(n^3)$
+							做法要用到的结论被找到反例了？代码源连夜删掉了这个 subtask<br>T2 什么水数据，直接输出 $\min(\text{cnt0}, \text{cnt1})$ 能有 $29$
+							分，我甚至最开始以为这个结论是对的，打到一半竟然加强数据了<br>打了个 ISAP，拼到了 $69$ 分<br>今天的题目感觉都很可做啊，下午讲评都听懂了，留给后面在做吧</p>
+						<h2 id="day-2">day -2</h2>
+						<p><strong>代码源 round 5</strong><br>$0 + 0 + 0$<br>T1 树上启发式合并，没有调出来<br>集训结束了<br>晚上和 paper，As_Snow
+							联机，落幕曲好玩</p>
+						<h2 id="day-1">day -1</h2>
+						<p><strong>玩</strong><br>上午睡大觉<br>下午去海边，说是去海边结果因为 Grisses 带错路行走 2h，神奇</p>
+					</div>
+				</div>
+				<br>
+				<div class="foldingFrame">
+					<div style="width: 100%; padding-top: 10px; padding-bottom: 10px; color: #CCF"
+						onclick="display('foldingFrame2')">
+						<h2 style="margin: 0 0;">NOI 部分</h2>
+					</div>
+					<div id="foldingFrame2">
+						<h2 id="day-0">day 0</h2>
+						<p><strong>报道</strong><br>没什么好说的，志愿者只认识我名字的第一个字</p>
+						<h2 id="day-1">day 1</h2>
+						<p><strong>开幕式和笔试</strong><br>大海！我们来了！<br>我不知道这个神奇节目是怎么入选上 NOI 开幕式的<br>笔试没有挂分</p>
+						<h2 id="day-2-noi-day-1-">day 2 (NOI day 1)</h2>
+						<p><strong>NOI day 1</strong><br>T1 有个简单的 $O(nmk)$ DP，顺利通过<br>T2
+							发现选择往父亲走的点构成一个圆，就可以转化成要维护一个支持查询园内点的个数、园内点到圆心的距离总和，用淀粉质就行了，代码稍微有点难写，写了 1h，还被卡常了，把
+							<code>vector</code>
+							改成数组就过了<br>T3
+							时还剩 1.5h，先简单的搞了个 $14$ 分做法，然后搞出了一个策略感觉询问总个数 $50$ 左右，不过最后也没有调出来<br>复评，没有挂分 $100 + 100 + 14 =
+							214$
+						</p>
+						<h2 id="day-3-noi-day-1-5-">day 3 (NOI day 1.5)</h2>
+						<p>社会实践</p>
+						<h2 id="day-4-noi-day-2-">day 4 (NOI day 2)</h2>
+						<p>
+							<strong>NOI day 2</strong><br>
+							T1 二分答案然后<code>check</code> 里我大分讨了 $11$ 种情况，打了 $120$ 多行<br>
+							T2 怎么考 prufer 啊，考场现推了一个 prufer 序列构造原树的算法，没发现两点相邻的任何有用性质。搞了个 $52$ 分做法，被 2e5 $\times$ 1e3
+							卡常了，只有
+							$36$
+							分<br>T3 没仔细想，打了个 $4$
+							分就跑路继续去给 T2
+							卡常<br>复评，在 Grisses 的见证下我的 T2 显示 compilation error，不是 hyw？完蛋了，我在撤销一个没用的优化的时候没有 ctrl + Z 完，最后
+							$2$
+							分钟检查用 selfeval
+							测也没有测完考试就结束了，炸完了 $100 + 0 + 4 = 104$
+						</p>
+						<h2 id="day-5">day 5</h2>
+						<p><strong>闭幕式</strong><br>$100 + 214 + 104 = 518$<br>D 类银尾</p>
+					</div>
+				</div>
+				<p>这次的 NOI day 2 应该是我今年以来打得最炸的一次比赛吧，我从来没有想过我会 compilation error</p>
+				<p>过去已经成为过去，这个赛季无论在怎么样也已经结束了，希望我在下一个赛季能够打出更好的成绩吧，NOIP 2026 rp++，NOI 2027 北京见</p>
+			</div>
+		</main>
+	</div>
+</body>
+
+</html>
